@@ -1,13 +1,13 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
 
-        ArrayList <String> initalList = new ArrayList<String>();
-        ArrayList<Word> list = new ArrayList<Word>();
+        ArrayList<String> initalList = new ArrayList<String>();
+        List list = new List();
+        Word checkedWord;
 
+/*      // Dataset hard
         initalList.add("VOLUNTEER"); //1
         initalList.add("BELIEVING"); //3
         initalList.add("ILLNESSES"); //0
@@ -23,27 +23,46 @@ public class Main {
         initalList.add("REPELLENT");
         initalList.add("IMPLANTED");
         initalList.add("GODFATHER");
+*/
+        // Dataset medium
+        initalList.add("TUNNEL");
+        initalList.add("GROUND");
+        initalList.add("SHACKS");
+        initalList.add("CHOICE");
+        initalList.add("GROWTH");
+        initalList.add("SEIZED");
+        initalList.add("CRIMES");
+        initalList.add("VIPERS");
+        initalList.add("DRAWER");
+        initalList.add("SHRINE");
+        initalList.add("AWHILE");
+        initalList.add("ACCESS");
+        initalList.add("RANSOM");
+        initalList.add("DRIVES");
+        initalList.add("SPARED");
 
-        for (String word : initalList){
-            list.add(new Word(word, -1));
+        // Fill list with words from initial list
+        for (String word : initalList) {
+            list.list.add(new Word(word, -1));
         }
 
-        String bestWord = "SOMETHING";
-        for (Word word : list){
-            word.matches = word.countMatches(bestWord);
+        System.out.println("\nFirst try");
+        checkedWord = new Word("ACCESS", 1);
+        //list.updateWord(checkedWord);
+        list.filter(checkedWord);
+
+        // Print resulted list
+        for (Word word : list.list) {
+            System.out.println(word.text + " " + word.matches);
         }
 
-        Collections.sort(list, new Comparator<Word>() {
-            public int compare(Word o1, Word o2) {
-                if (o1.matches == o2.matches){return 0;}
-                else {
-                    if (o1.matches < o2.matches){return 1;}
-                    else {return -1;}
-                }
-            }
-        });
+        System.out.println("\nSecond try");
+        checkedWord = new Word("SHACKS", 0);
+        //list.updateWord(checkedWord);
+        list.filter(checkedWord);
 
-        for (Word word : list){
+        // Print resulted list
+        for (Word word : list.list) {
             System.out.println(word.text + " " + word.matches);
         }
     }
